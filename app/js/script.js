@@ -66,12 +66,17 @@ function renderGame() {
     messageEl.textContent = message
 }
 
-// this is the newcard function which generates game logic. 
+// this is the newcard function which generates game logic added error message incase game breaks 
 function newCard() {
     if (isAlive === true && hasBlackJack === false) {
         let card = getRandomCard()
         sum += card
         cards.push(card)
         renderGame()        
-    }
+    } else {
+		message = "Please refresh page or start a new game"
+	}
+	messageEl.textContent = message
 }
+
+// to do - make use of chips 
