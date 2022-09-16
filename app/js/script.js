@@ -4,6 +4,7 @@ const test = () => {
 	console.log('this is a test');
 };
 
+// using a object to store player data
 let player = {
     name: "Tommy",
     chips: 200
@@ -19,8 +20,10 @@ let sumEl = document.getElementById("sum-el")
 let cardsEl = document.getElementById("cards-el")
 let playerEl = document.getElementById("player-el")
 
+// uses object to find the values then render it on the page
 playerEl.textContent = player.name + ": $" + player.chips
 
+// Generates random value between 1 - 11
 function getRandomCard() {
     let randomNumber = Math.floor( Math.random()*13 ) + 1
     if (randomNumber > 10) {
@@ -32,6 +35,7 @@ function getRandomCard() {
     }
 }
 
+// this starts the blackjack game, generating two randon cards from random card function
 function startGame() {
     isAlive = true
     let firstCard = getRandomCard()
@@ -41,12 +45,14 @@ function startGame() {
     renderGame()
 }
 
+// this renders the cards in the game keeping all the cards using arrys with a for loop. So we get all cards instead of just two.  
 function renderGame() {
     cardsEl.textContent = "Cards: "
     for (let i = 0; i < cards.length; i++) {
         cardsEl.textContent += cards[i] + " "
     }
     
+	// I used a if else statement to show the different game states, by using Dom manipulation I also rendered a message when the variables are met. 
     sumEl.textContent = "Sum: " + sum
     if (sum <= 20) {
         message = "Do you want to draw a new card?"
@@ -60,7 +66,7 @@ function renderGame() {
     messageEl.textContent = message
 }
 
-
+// this is the newcard function which generates game logic. 
 function newCard() {
     if (isAlive === true && hasBlackJack === false) {
         let card = getRandomCard()
